@@ -2,10 +2,6 @@ import requests
 import re
 import os
 
-link = "https://www.mojedelo.com/prosta-delovna-mesta"
-kategorije = ["bancnistvo-finance", "matematika-fizika-in-naravoslovje", "upravljanje-svetovanje-vodenje"]
-regije = ["osrednjeslovenska", "obalna", "gorenjska"]
-
 
 def download_url_to_string(url):
     '''
@@ -54,7 +50,11 @@ def get_all_pages(osnovni_url, kategorija, regija):
         text = download_url_to_string(url + "?p=" + str(page))
 
 
-if __name__ == "__main__":
+def save_web_data():
+    link = "https://www.mojedelo.com/prosta-delovna-mesta"
+    kategorije = ["bancnistvo-finance", "matematika-fizika-in-naravoslovje", "upravljanje-svetovanje-vodenje"]
+    regije = ["osrednjeslovenska", "obalna", "gorenjska"]
+
     for kategorija in kategorije:
-        for regija in regije:
-            get_all_pages(link, kategorija, regija)
+            for regija in regije:
+                get_all_pages(link, kategorija, regija)    

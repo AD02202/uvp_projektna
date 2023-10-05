@@ -2,9 +2,6 @@ import re
 import os
 import csv
 
-kategorije = ["bancnistvo-finance", "matematika-fizika-in-naravoslovje", "upravljanje-svetovanje-vodenje"]
-regije = ["osrednjeslovenska", "obalna", "gorenjska"]
-
 
 class Sluzba():
     '''
@@ -42,7 +39,8 @@ def get_job_data(job_text):
     ime_vzorec = r'<h2 class="title">.*?</h2>'
     ime = re.search(ime_vzorec, job_text, flags=re.DOTALL).group()
     ime = ime.strip('<h2 class="title">').strip('</h2>')
-    ime = ime.replace(',', ' ').replace('"', '').replace('\n', '')
+    # odstranimo vejice, ker bomo shranjevali v csv
+    ime = ime.replace(',', ' ').replace('"', '').replace('\n', '').replace('(m/ž)', '').replace('m/ž', '')
     
     opis_vzorec = r'<p class="premiumDescription">.*?</p>'
     opis = re.search(opis_vzorec, job_text, flags=re.DOTALL)
@@ -50,7 +48,8 @@ def get_job_data(job_text):
         opis = opis.group().strip('<p class="premiumDescription">').strip('</p>')
         opis = opis.replace(',', ' ').replace('"', '').replace('\n', '')
     else:
-        opis = ""
+        # Ce oglas nima opisa, ga filtriramo
+        return None
 
     delodajalec_vzorec = r'<div class="box-details-icon icon icon-home"></div>.*?<div class="detail">.*?</div>'
     delodajalec = re.search(delodajalec_vzorec, job_text, flags=re.DOTALL).group()
@@ -70,7 +69,9 @@ def extract_jobs(text):
     sluzbe_texts = re.findall(vzorec, text, flags=re.DOTALL)
     sluzbe = []
     for sluzba in sluzbe_texts:
-        sluzbe.append(get_job_data(sluzba)) 
+        prebrana_sluzba = get_job_data(sluzba)
+        if prebrana_sluzba != None:
+            sluzbe.append(prebrana_sluzba) 
     return sluzbe
    
 
@@ -100,7 +101,10 @@ def write_csv(sluzbe, directory, filename, fieldnames):
             writer.writerow(sluzba.to_dict())
 
 
-if __name__ == "__main__":
+def parse_data_to_csv():
+    kategorije = ["bancnistvo-finance", "matematika-fizika-in-naravoslovje", "upravljanje-svetovanje-vodenje"]
+    regije = ["osrednjeslovenska", "obalna", "gorenjska"]
+
     vse_sluzbe = []
     for kategorija in kategorije:
         for regija in regije:
@@ -116,3 +120,6 @@ if __name__ == "__main__":
     
     fieldnames = ["ime", "delodajalec", "opis", "kategorija", "regija"]
     write_csv(vse_sluzbe, "obdelani", "sluzbe.csv", fieldnames)
+
+
+parse_data_to_csv()
