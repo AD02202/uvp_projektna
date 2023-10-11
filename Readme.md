@@ -1,6 +1,11 @@
-# Aljin uvp projekt
+# Program za analizo besed na portalu mojedelo
 
-Tukaj najdes vse o Aljinem projektu
+Repozitorij za program za analizo besed na portalu mojedelo. Zaključni projekt pri predmetu Uvod v programiranje na programu finančna matematika.
+
+## Uvod
+
+Za vir podatkov sem uporabila portal [mojedelo.com](https://www.mojedelo.com/). 
+
 
 ## Navodila za uporabo
 
