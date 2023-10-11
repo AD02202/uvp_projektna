@@ -35,7 +35,6 @@ def get_job_data(job_text):
     '''
     Ta funkcija iz bloka html kode izlusci vse potrebne podatke o sluzbi
     '''
-    
     ime_vzorec = r'<h2 class="title">.*?</h2>'
     ime = re.search(ime_vzorec, job_text, flags=re.DOTALL).group()
     ime = ime.strip('<h2 class="title">').strip('</h2>')
@@ -80,7 +79,6 @@ def load_category(path):
     Ta funkcija nalozi celoten direktorij datotek oblike 1.html, 2.html, 3.html ... in iz njega
     izlusci podatke o sluzbah
     '''
-
     sluzbe = []
     index = 1
     while os.path.exists(path + '/' + str(index) + '.html'):
@@ -120,6 +118,3 @@ def parse_data_to_csv():
     
     fieldnames = ["ime", "delodajalec", "opis", "kategorija", "regija"]
     write_csv(vse_sluzbe, "obdelani", "sluzbe.csv", fieldnames)
-
-
-parse_data_to_csv()
