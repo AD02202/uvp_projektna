@@ -1,12 +1,12 @@
-# Program za analizo besed na portalu mojedelo
+# Program za analizo besed na portalu mojedelo.com
 
-Repozitorij za program za analizo besed na portalu mojedelo. Zaključni projekt pri predmetu Uvod v programiranje na programu finančna matematika.
+Repozitorij za program za analizo besed na portalu mojedelo.com. Zaključni projekt pri predmetu Uvod v programiranje na programu finančna matematika.
 
 Avtor: Alja Dostal
 
 ## Uvod
 
-Za vir podatkov sem uporabila portal [mojedelo.com](https://www.mojedelo.com/). Mojedelo.si je spletni portal, namenjen povezovanju iskalcev zaposlitve s podjetji, ki iščejo nove sodelavce. Deluje na področju Slovenije in ima več funkcij, ki omogočajo učinkovito iskanje zaposlitve in upravljanje kariere.
+Za vir podatkov sem uporabila portal [mojedelo.com](https://www.mojedelo.com/). Mojedelo.com je spletni portal, namenjen povezovanju iskalcev zaposlitve s podjetji, ki iščejo nove sodelavce. Deluje na področju Slovenije in ima več funkcij, ki omogočajo učinkovito iskanje zaposlitve in upravljanje kariere.
 
 
 ## Opis programa
